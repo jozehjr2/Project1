@@ -1,2 +1,4 @@
-# Project1
-Tests for learning of this technology of gits.
+# Project1 -
+Tests for learning of technologies
+
+Programa Somador (Testes/Exemplo)
