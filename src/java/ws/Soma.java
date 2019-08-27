@@ -18,7 +18,6 @@ import javax.ejb.Stateless;
 @Stateless()
 public class Soma {
 
-    
     @WebMethod(operationName = "hello")
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
