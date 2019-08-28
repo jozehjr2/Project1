@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Soma" targetNamespace="http://ws/" xmlns:tns="http://ws/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:fi="http://java.sun.com/xml/ns/wsit/2006/09/policy/fastinfoset/service" xmlns:tcp="http://java.sun.com/xml/ns/wsit/2006/09/policy/soaptcp/service" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsrm="http://docs.oasis-open.org/ws-rx/wsrmp/200702" xmlns:wsat="http://schemas.xmlsoap.org/ws/2004/10/wsat" 
+ >
+    <message name="hello"/>
+    <message name="helloResponse"/>
+    <message name="Somar"/>
+    <message name="SomarResponse"/>
+    <portType name="Soma">
+        <operation name="hello">
+            <input message="tns:hello"/>
+            <output message="tns:helloResponse"/>
+        </operation>
+        <operation name="Somar">
+            <input message="tns:Somar"/>
+            <output message="tns:SomarResponse"/>
+        </operation>
+    </portType>
+    <binding name="SomaPortBinding" type="tns:Soma">
+        <operation name="hello">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="Somar">
+            <wsp:PolicyReference URI="#SomaPortBinding_Somar_Policy"/>
+            <input/>
+            <output/>
+        </operation>
+    </binding>
+    <service name="Soma">
+        <port name="SomaPort" binding="tns:SomaPortBinding"/>
+    </service>
+    <wsp:Policy wsu:Id="SomaPortBinding_Somar_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <wsat:ATAssertion wsp:Optional="true"/>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</definitions>
